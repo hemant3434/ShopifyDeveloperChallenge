@@ -1,0 +1,8 @@
+<h1>All Public Images</h1>
+
+<% @images.each do |img| %>
+    <%= image_tag img.picture.url if img.picture? %>
+    <%= "Uploaded by: #{img.user.email}" %>
+    <br>
+<% end %>
+<p></p>
