@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  before_action :logged_in, only: [:create, :image_view]
   def create
     image_params[:picture]&.each do |pic|
       arg = { 
@@ -12,13 +13,15 @@ class ImagesController < ApplicationController
   end
 
   def image_view
-    Image.find(params[:image_id]).update_attributes(public: params['public'])
+    redirect_to(user_path(current_user), status: 300) and return if params[:image_id].blank? || params[:public].blank?
+    current_user.images.where(id: params[:image_id])&.first&.update_attributes(public: params[:public])
     flash[:success] = "Image Access Modified!"
-    redirect_to user_path(current_user)
+    redirect_to user_path(current_user), status: 301
   end
 
   private
   def image_params
     params.require(:image).permit(:public, picture: [])
   end
+
 end
