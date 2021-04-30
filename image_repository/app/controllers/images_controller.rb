@@ -7,7 +7,7 @@ class ImagesController < ApplicationController
         public: image_params[:public]
       }
       @image = Image.create(arg)
-      current_user.images << @image if @image.picture&.url.present?
+      current_user.images << @image if @image.picture&.url&.present?
     end
     redirect_to user_path(current_user), status: 301
   end

@@ -8,3 +8,4 @@
 if CurrentUser.all.count == 0
   CurrentUser.create!()
 end
+User.create!(email: 'a@a.a', password: 'foobar', password_confirmation: 'foobar')
