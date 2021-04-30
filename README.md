@@ -70,7 +70,7 @@ Download Instructions for image magick:
 
 ## Database Schema
 ![Alt text](db_schema.png "Database Schema")
-## Multi File Uploading
+## Explanation
 
  - I make use of `carrierwave` gen to handle the individual file upload and have it connected to the `picture`attribute in the `Image` rails model
  - Missing from DB Schema is rails association between `User`and `Image` : I set users to have many `Images`and added a boolean attribute `public`to determine if the specified image should be displayed publicly
