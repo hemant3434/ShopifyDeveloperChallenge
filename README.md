@@ -46,7 +46,7 @@ Download Instructions for image magick:
 
 #### DISCLAIMER/NOTES
 
- - Since I focused on image uploading feature, I added **DUMMY** user model to mimic private/public permissions on images. 
+ - Since I focused on image uploading feature, I added a **DUMMY** user model to mimic private/public permissions on images. 
  - INFACT you can only login one user at a time on this prototype - THERE ARE NO **Sessions/Cookies** or proper **user authentication**
 
 *Reasoning*: I tried to keep my focus towards secure image upload and chosen features rather than implementing a production grade user auth system which takes up a lot of unnecessary time.  
@@ -69,7 +69,7 @@ Download Instructions for image magick:
 # How it works
 
 ## Database Schema
-![DB Schema](https://drive.google.com/file/d/19tK7zrjOaf-FIiEF9ruMwociRFTRFmlY/view?usp=sharing)
+![Alt text](db_schema.png "Database Schema")
 ## Multi File Uploading
 
  - I make use of `carrierwave` gen to handle the individual file upload and have it connected to the `picture`attribute in the `Image` rails model
