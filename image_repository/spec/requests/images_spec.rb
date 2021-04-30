@@ -10,7 +10,7 @@ RSpec.describe ImagesController do
     end
 
     after(:each) do
-      User.destroy_all
+      Image.destroy_all
     end
 
     context 'when user is signed in and wants to update his image permissions' do
