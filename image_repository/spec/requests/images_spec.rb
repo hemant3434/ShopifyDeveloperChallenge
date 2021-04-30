@@ -1,8 +1,8 @@
 require 'rails_helper'
 require 'spec_helper'
 RSpec.describe ImagesController do
+  let(:user) { User.create!(email: 'example@railstutorial.org', password: 'foobar', password_confirmation: 'foobar') }
   describe "POST /image_view" do
-    let(:user) { User.create!(email: 'example@railstutorial.org', password: 'foobar', password_confirmation: 'foobar') }
     
     before(:each) do
       CurrentUser.create!(cur: user.id) if CurrentUser.all.count == 0
@@ -50,6 +50,48 @@ RSpec.describe ImagesController do
         expect(response).to redirect_to(user_path(user2))
         expect(response.status).to eq(301)
         expect(user.images.first.public).to eq(false)
+      end
+    end
+  end
+
+  describe "POST images_path" do
+    before(:each) do
+      CurrentUser.create!(cur: user.id) if CurrentUser.all.count == 0
+      CurrentUser.first.update_attributes(cur: user.id)
+    end
+
+    after(:each) do
+      Image.destroy_all
+    end
+
+    context 'when multiple files are sent' do
+      it 'should get uploaded and added to users images' do
+        test_photo = Rack::Test::UploadedFile.new("#{Rails.root}/spec/requests/dummy.png")
+        test_photo2 = Rack::Test::UploadedFile.new("#{Rails.root}/spec/requests/dummy.png")
+        post images_path, params: { image: { public: true, picture: [test_photo, test_photo2] } }
+
+        expect(user.images.count).to eq(2)
+        expect(response.status).to eq(301)
+      end
+    end
+
+    context 'when multiple non image files are sent' do
+      it 'should not get uploaded and should not be added to users images if they are not images' do
+        test_photo = Rack::Test::UploadedFile.new("#{Rails.root}/spec/requests/dummy.png")
+        test_photo2 = Rack::Test::UploadedFile.new("#{Rails.root}/spec/requests/dummy.txt")
+        post images_path, params: { image: { public: true, picture: [test_photo, test_photo2] } }
+
+        expect(user.images.count).to eq(1)
+        expect(response.status).to eq(301)
+      end
+    end
+
+    context 'when no files are sent' do
+      it 'should not get uploaded and should not be added to users images' do
+        post images_path, params: { image: { public: true, picture: [] } }
+
+        expect(user.images.count).to eq(0)
+        expect(response.status).to eq(301)
       end
     end
   end
