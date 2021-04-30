@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :correct_user, only: [:create, :new]
   def new
   end
 
@@ -18,4 +19,5 @@ class SessionsController < ApplicationController
     logout
     redirect_to root_url
   end
+
 end

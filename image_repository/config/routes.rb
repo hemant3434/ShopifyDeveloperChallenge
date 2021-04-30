@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
   post '/image_view', to: 'images#image_view'
-  resources :users
+  resources :users, only: [:new, :show, :create]
   resources :images, only: [:create]
 end

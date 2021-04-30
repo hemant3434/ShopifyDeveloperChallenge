@@ -1,14 +1,12 @@
 class ImagesController < ApplicationController
   def create
-    if image_params[:picture].present?
-      image_params[:picture].each do |pic|
-        arg = { 
-          picture: pic,
-          public: image_params[:public]
-        }
-        @image = current_user.images.build(arg)
-        @image.save!
-      end
+    image_params[:picture]&.each do |pic|
+      arg = { 
+        picture: pic,
+        public: image_params[:public]
+      }
+      @image = current_user.images.build(arg)
+      @image.save!
     end
     redirect_to user_path(current_user)
   end
