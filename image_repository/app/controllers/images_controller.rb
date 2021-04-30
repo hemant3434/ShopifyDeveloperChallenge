@@ -9,7 +9,7 @@ class ImagesController < ApplicationController
       @image = current_user.images.build(arg)
       @image.save!
     end
-    redirect_to user_path(current_user)
+    redirect_to user_path(current_user), status: 301
   end
 
   def image_view
