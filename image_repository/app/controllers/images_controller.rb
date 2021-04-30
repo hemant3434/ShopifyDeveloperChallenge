@@ -8,8 +8,6 @@ class ImagesController < ApplicationController
       }
       @image = Image.create(arg)
       current_user.images << @image if @image.picture&.url.present?
-      # @image = current_user.images.build(arg)
-      # @image.save!
     end
     redirect_to user_path(current_user), status: 301
   end
