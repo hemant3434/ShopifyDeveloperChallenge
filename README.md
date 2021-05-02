@@ -54,8 +54,6 @@ Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/
 - After uploading, you can click on the buttons to `Make your image public/private`and to make sure this worked you can just [view all Images](http://localhost:3000/)
 -  You can also try and login with email `b@b.b`with password: `foobar` - Dummy user created during seed run. Make sure public/private permissions of the images work with multiple users viewing the [view all Images](http://localhost:3000/)
 
-
-
 ## Running Unit Tests
 
 -  `rails db:test:prepare`
