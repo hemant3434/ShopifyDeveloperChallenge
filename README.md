@@ -39,27 +39,22 @@ Download Instructions for image magick:
 ## Setup Instructions
 
 1.  `cd image_repository`
-2.  `bundle update`
-3.  `bundle install`
-4.  `rails db:migrate`
-5.  `rails db:seed`
+2.  `bundle install`
+3.  `rails db:migrate`
+4.  `rails db:seed`
 
 Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/)
 
 ## Usage Instructions
 
 - Hyperlinks to all pages on top of the UI
--  `Login Now!`: email `a@a.a`with password: `foobar` - Dummy user created during seed run
+- `Login Now!`: email `a@a.a`with password: `foobar` - Dummy user created during seed run
 - Try to upload multiple image files - Only jpg, png extensions allowed - No other files
 - Make your files public/private after you upload them and go to the [View all Images Link](http://localhost:3000/) to view public images anytime
 - After uploading, you can click on the buttons to `Make your image public/private`and to make sure this worked you can just [view all Images](http://localhost:3000/)
+-  You can also try and login with email `b@b.b`with password: `foobar` - Dummy user created during seed run. Make sure public/private permissions of the images work with multiple users viewing the [view all Images](http://localhost:3000/)
 
-#### DISCLAIMER/NOTES
 
-- Since I focused on the image uploading feature, I added a **DUMMY** user model to mimic private/public permissions on images.
-- INFACT you can only login one user at a time on this prototype - THERE ARE NO **Sessions/Cookies** or proper **user authentication**
-
-*Reasoning*: I tried to keep my focus towards secure image upload and chosen features rather than implementing a production grade user auth system which takes up a lot of unnecessary time.
 
 ## Running Unit Tests
 
@@ -75,7 +70,7 @@ Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/
 1. Tests 1 - 4 in `image_spec.rb`make sure that a non user is not able to update other user(s) image publicity and makes sure correct images are made public/private
 2. Tests 5 - 7: Make sure that malicious files are **NOT** uploaded to the server and only images are uploaded
 
-**NOTE**: I did not test the user sign in because that part is acting as a **DUMMY** only and was not in my chosen feature to implement for this image repository challenge
+**NOTE**: I did not test the user sign in because that part is acting as a **DUMMY** only and was not in my chosen feature to implement for this image repository challenge. 
 
 # How it works
 
@@ -95,6 +90,7 @@ Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/
 ### Secure Upload
 
 - I modified the carrier Wave Gem file to include whitelist extensions to make sure malicious files are not uploaded which essentially acts as back end server validation
+- A limit of 1.5MB for any image size
 - I also added front-end whitelisting to `jpg/png`file extensions
 
 ### Private Public Images
