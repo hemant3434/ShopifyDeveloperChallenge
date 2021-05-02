@@ -14,7 +14,7 @@
     <% end %>
     <div class="ui menu">
       <%= link_to "View Public Images", root_path, class: "link active item" %>
-      <% if current_user&.present? %>
+      <% if logged_in? %>
           <%= link_to "Profile", user_path(current_user), class: "link active item" %>
           <%= link_to "Log out", logout_path, class: "link active item", method: :delete %>
       <% else %>

@@ -14,16 +14,20 @@
   Uploaded Image(s)
 </div>
 
-<% current_user.images.each do |img| %>
-  <%= image_tag img.picture.url if img.picture? %>
-  <%= form_with url: "/image_view", method: :post do |f| %>
-    <%= f.hidden_field :image_id, value: img.id%>
-    <%= f.hidden_field :public, value: !img.public %>
-    <% if img.public %>
-      <%= f.submit "Make Image Private", class: "ui secondary button" %>
-    <% else %>
-      <%= f.submit "Make Image Public", class: "ui secondary button" %>
+<% if current_user.images.count > 0 %>
+  <% current_user.images.each do |img| %>
+    <% if img.picture? %>
+      <%= image_tag img.picture.url %>
+      <%= form_with url: "/image_view", method: :post do |f| %>
+        <%= f.hidden_field :image_id, value: img.id%>
+        <%= f.hidden_field :public, value: !img.public %>
+        <% if img.public %>
+          <%= f.submit "Make Image Private", class: "ui secondary button" %>
+        <% else %>
+          <%= f.submit "Make Image Public", class: "ui secondary button" %>
+        <% end %>
+      <% end %>
+      <div class="ui divider"></div>
     <% end %>
   <% end %>
-  <div class="ui divider"></div>
 <% end %>
