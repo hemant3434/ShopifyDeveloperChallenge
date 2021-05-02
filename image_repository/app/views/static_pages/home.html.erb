@@ -1,8 +1,9 @@
 <h1>All Public Images</h1>
 
 <% @images.each do |img| %>
-    <%= image_tag img.picture.url if img.picture? %>
-    <%= "Uploaded by: #{img.user.email}" %>
-    <br>
+    <div style="display:inline-block" data-position="right center" data-inverted="true" data-tooltip='<%= "Uploaded by #{img.user.email}" %>'  data-variation="large">
+      <%= image_tag img.picture.url if img.picture? %>
+    </div>
+  <div class="ui divider"></div>
 <% end %>
 <p></p>

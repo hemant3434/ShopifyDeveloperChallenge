@@ -8,6 +8,8 @@ class ImagesController < ApplicationController
       }
       @image = Image.create(arg)
       current_user.images << @image if @image.picture&.url&.present?
+      flash_message('error', "Could not upload #{pic&.original_filename}") if @image.picture&.url&.blank?
+      flash_message('success', "Successfully uploaded #{pic&.original_filename}") if @image.picture&.url&.present?
     end
     redirect_to user_path(current_user), status: 301
   end

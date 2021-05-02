@@ -8,17 +8,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class='body'>
     <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <div class="<%= message_type %>"><%= message.is_a?(String)? message : message.join('| \t') %></div>
     <% end %>
-    <%= link_to "View Public Images", root_path, id: "logo" %>
-    <% if current_user&.present? %>
-        <%= link_to "Profile", user_path(current_user), class: "btn btn-lg btn-primary" %>
-        <%= link_to "Log out", logout_path, class: "btn btn-lg btn-primary", method: :delete %>
-    <% else %>
-      <%= link_to "Login now!", login_path, class: "btn btn-lg btn-primary" %>
-    <% end %>
+    <div class="ui menu">
+      <%= link_to "View Public Images", root_path, class: "link active item" %>
+      <% if current_user&.present? %>
+          <%= link_to "Profile", user_path(current_user), class: "link active item" %>
+          <%= link_to "Log out", logout_path, class: "link active item", method: :delete %>
+      <% else %>
+        <%= link_to "Login now!", login_path, class: "link active item" %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
