@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       flash[:success] = "Welcome to the Image Repo Uploader"
       redirect_to user_path(user)
-      login(user)
+      log_in(user)
     else
       flash[:error] = "Error signing in!!"
       redirect_to login_path

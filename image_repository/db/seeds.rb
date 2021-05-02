@@ -5,7 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-if CurrentUser.all.count == 0
-  CurrentUser.create!()
-end
 User.create!(email: 'a@a.a', password: 'foobar', password_confirmation: 'foobar')
+User.create!(email: 'b@b.b', password: 'foobar', password_confirmation: 'foobar')

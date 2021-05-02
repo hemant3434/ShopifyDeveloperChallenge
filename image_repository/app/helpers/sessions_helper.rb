@@ -1,15 +1,22 @@
 module SessionsHelper
 
+  # Returns the current logged-in user (if any).
   def current_user
-    tmp = CurrentUser.find(1).cur
-    tmp.present? ? User.find(tmp) : nil
+    if session[:user_id]
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
   end
 
-  def login(user)
-    CurrentUser.find(1).update_attributes(cur: user.id)
+  def log_in(user)
+    session[:user_id] = user.id
+  end
+
+  def logged_in?
+    !current_user.nil?
   end
 
   def logout
-    CurrentUser.find(1).update_attributes(cur: nil)
+    session.delete(:user_id)
+    @current_user = nil
   end
 end

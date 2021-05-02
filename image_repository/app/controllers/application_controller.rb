@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   protected
   def correct_user
-    redirect_to user_path(current_user) and return if current_user.present?
+    redirect_to user_path(current_user) and return if logged_in?
   end
 
   def logged_in
-    redirect_to root_url and return if current_user.blank?
+    redirect_to root_url and return if !logged_in?
   end
 end

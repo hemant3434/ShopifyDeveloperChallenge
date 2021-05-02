@@ -1,15 +1,16 @@
 require 'rails_helper'
 require 'spec_helper'
+include SessionsHelper
 RSpec.describe ImagesController do
   let(:user) { User.create!(email: 'example@railstutorial.org', password: 'foobar', password_confirmation: 'foobar') }
   describe "POST /image_view" do
     
     before(:each) do
-      CurrentUser.create!(cur: user.id) if CurrentUser.all.count == 0
-      CurrentUser.first.update_attributes(cur: user.id)
+      post login_path, params: { session:{ email: user.email, password: 'foobar' } }
     end
 
     after(:each) do
+      delete logout_path
       Image.destroy_all
     end
 
@@ -44,11 +45,10 @@ RSpec.describe ImagesController do
     context 'a user tries to update images that dont belong to him/her' do
       it 'should not update the permissions' do
         user2 = User.create!(email: 'a@a.ca', password: 'foobar', password_confirmation: 'foobar')
-        CurrentUser.first.update_attributes(cur: user2.id)
+        delete logout_path
         img = Image.create!(user_id: user.id, public: false)
         post '/image_view', params: { image_id: img.id, public: true }
-        expect(response).to redirect_to(user_path(user2))
-        expect(response.status).to eq(301)
+        expect(response).to redirect_to(root_url)
         expect(user.images.first.public).to eq(false)
       end
     end
@@ -56,11 +56,11 @@ RSpec.describe ImagesController do
 
   describe "POST images_path" do
     before(:each) do
-      CurrentUser.create!(cur: user.id) if CurrentUser.all.count == 0
-      CurrentUser.first.update_attributes(cur: user.id)
+      post login_path, params: { session:{ email: user.email, password: 'foobar' } }
     end
 
     after(:each) do
+      delete logout_path
       Image.destroy_all
     end
 
@@ -91,6 +91,17 @@ RSpec.describe ImagesController do
         post images_path, params: { image: { public: true, picture: [] } }
 
         expect(user.images.count).to eq(0)
+        expect(response.status).to eq(301)
+      end
+    end
+
+    context 'when a image too large is sent' do
+      it 'should not get uploaded and should not be added to users images if > 1.5 MB' do
+        test_photo = Rack::Test::UploadedFile.new("#{Rails.root}/spec/requests/dummy.png")
+        test_photo2 = Rack::Test::UploadedFile.new("#{Rails.root}/spec/requests/2MB.jpg")
+        post images_path, params: { image: { public: true, picture: [test_photo, test_photo2] } }
+
+        expect(user.images.count).to eq(1)
         expect(response.status).to eq(301)
       end
     end
