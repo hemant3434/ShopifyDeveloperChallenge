@@ -66,7 +66,7 @@ Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/
 - ENDPOINT 2: `images_path` - API for uploading multiple images and associating them with the user
 
 1. Tests 1 - 4 in `image_spec.rb`make sure that a non user is not able to update other user(s) image publicity and makes sure correct images are made public/private
-2. Tests 5 - 7: Make sure that malicious files are **NOT** uploaded to the server and only images are uploaded
+2. Tests 5 - 7: Make sure that malicious files are **NOT** uploaded to the server and only images <1.5MB are uploaded
 
 **NOTE**: I did not test the user sign in because that part is acting as a **DUMMY** only and was not in my chosen feature to implement for this image repository challenge. 
 
