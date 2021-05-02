@@ -94,7 +94,7 @@ Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/
 
 ### Secure Upload
 
-- I modified the carrier Wave Gem file to include whitelist extensions to make sure malicious files are not uploaded which essentially acting as back end server validation
+- I modified the carrier Wave Gem file to include whitelist extensions to make sure malicious files are not uploaded which essentially acts as back end server validation
 - I also added front-end whitelisting to `jpg/png`file extensions
 
 ### Private Public Images
