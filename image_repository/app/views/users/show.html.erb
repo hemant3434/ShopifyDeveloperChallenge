@@ -16,7 +16,6 @@
 
 <% current_user.images.each do |img| %>
   <%= image_tag img.picture.url if img.picture? %>
-  <%= "Public: #{img.public} | " %>
   <%= form_with url: "/image_view", method: :post do |f| %>
     <%= f.hidden_field :image_id, value: img.id%>
     <%= f.hidden_field :public, value: !img.public %>
