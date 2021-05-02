@@ -56,7 +56,7 @@ Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/
 
 #### DISCLAIMER/NOTES
 
-- Since I focused on image uploading feature, I added a **DUMMY** user model to mimic private/public permissions on images.
+- Since I focused on the image uploading feature, I added a **DUMMY** user model to mimic private/public permissions on images.
 - INFACT you can only login one user at a time on this prototype - THERE ARE NO **Sessions/Cookies** or proper **user authentication**
 
 *Reasoning*: I tried to keep my focus towards secure image upload and chosen features rather than implementing a production grade user auth system which takes up a lot of unnecessary time.
