@@ -1,33 +1,30 @@
-<div> 
-<%= current_user&.email %>
-</div>
-
-<%= form_for(@image) do |f| %>
-  <%= f.submit "Post", class: "btn btn-primary" %>
-  <span class="picture">
+<%= form_for(@image, html: { class: 'ui form'}) do |f| %>
+  <div class="field">
     <%= f.file_field :picture, multiple: true, accept: 'image/jpeg,image/png' %>
-  </span>
-  <%= f.label :public, class: "checkbox inline" do %>
+  </div>
+
+  <div class="field">
+    <%= f.label :public %>
     <%= f.check_box :public %>
-    <span>Make Image(s) public</span>
-  <% end %>
+  </div>
+  <%= f.submit "Post", class: "ui primary button" %>
 <% end %>
 
+<div class="ui horizontal divider">
+  Uploaded Image(s)
+</div>
+
 <% current_user.images.each do |img| %>
-    <%= image_tag img.picture.url if img.picture? %>
-    <%= "Public: #{img.public} | " %>
+  <%= image_tag img.picture.url if img.picture? %>
+  <%= "Public: #{img.public} | " %>
+  <%= form_with url: "/image_view", method: :post do |f| %>
+    <%= f.hidden_field :image_id, value: img.id%>
+    <%= f.hidden_field :public, value: !img.public %>
     <% if img.public %>
-      <%= form_with url: "/image_view", method: :post do |f| %>
-        <%= f.hidden_field :image_id, value: img.id%>
-        <%= f.hidden_field :public, value: !img.public %>
-        <%= f.submit "Make Image Private", class: "btn btn-primary" %>
-      <% end %>
+      <%= f.submit "Make Image Private", class: "ui secondary button" %>
     <% else %>
-      <%= form_with url: "/image_view", method: :post do |f| %>
-        <%= f.hidden_field :image_id, value: img.id%>
-        <%= f.hidden_field :public, value: !img.public %>
-        <%= f.submit "Make Image Public", class: "btn btn-primary" %>
-      <% end %>
+      <%= f.submit "Make Image Public", class: "ui secondary button" %>
     <% end %>
-    <br>
+  <% end %>
+  <div class="ui divider"></div>
 <% end %>

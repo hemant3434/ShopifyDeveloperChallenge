@@ -1,12 +1,18 @@
-<%= form_for(@user) do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control' %>
+<%= form_for(@user, html: { class: 'ui form' }) do |f| %>
+  <div class='field'>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
+  <div class='field'>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <div class='field'>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+ 
+  <%= f.submit 'Sign up', class: "ui primary button" %>
 <% end %>
