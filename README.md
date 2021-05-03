@@ -16,10 +16,15 @@ Tech Stack:
 
 # Table of Contents
 
+ - [Deployed Site](#deployed-site)
  - [Setup Instructions](#setup-instructions)
  - [Usage Instructions](#usage-instructions)
  - [Unit Tests](#running-unit-tests)
  - [How it Works](#how-it-works)
+
+## Deployed Site
+
+view the UI on [this heroku app](https://glacial-wave-84275.herokuapp.com/)
 
 # Local Setup, Tests & Instructions
 
@@ -50,9 +55,9 @@ Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/
 - Hyperlinks to all pages on top of the UI
 - `Login Now!`: email `a@a.a`with password: `foobar` - Dummy user created during seed run
 - Try to upload multiple image files - Only jpg, png extensions allowed - No other files
-- Make your files public/private after you upload them and go to the [View all Images Link](http://localhost:3000/) to view public images anytime
-- After uploading, you can click on the buttons to `Make your image public/private`and to make sure this worked you can just [view all Images](http://localhost:3000/)
--  You can also try and login with email `b@b.b`with password: `foobar` - Dummy user created during seed run. Make sure public/private permissions of the images work with multiple users viewing the [view all Images](http://localhost:3000/)
+- Make your files public/private after you upload them and go to the [View all Images Link](https://glacial-wave-84275.herokuapp.com/) to view public images anytime
+- After uploading, you can click on the buttons to `Make your image public/private`and to make sure this worked you can just [view all Images](https://glacial-wave-84275.herokuapp.com/)
+-  You can also try and login with email `b@b.b`with password: `foobar` - Dummy user created during seed run. Make sure public/private permissions of the images work with multiple users viewing the [view all Images](https://glacial-wave-84275.herokuapp.com/)
 
 ## Running Unit Tests
 
@@ -94,3 +99,8 @@ Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/
 ### Private Public Images
 
 - The `public`boolean attribute in db schema acts as a way to display images which only have this attribute set to `true`
+
+## File Storage
+
+- AWS S3 for production - Heroku Site
+- Local file storage for dev and testing (do not worry about running unit tests for images, i setup the rspecs in a way that deletes the uploaded test images directory after running the entire suite)
