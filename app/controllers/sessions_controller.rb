@@ -6,11 +6,11 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      flash[:success] = "Welcome to the Image Repo Uploader"
+      flash_message('success', 'Welcome to the Image Repo Uploader')
       redirect_to user_path(user)
       log_in(user)
     else
-      flash[:error] = "Error signing in!!"
+      flash_message('error', 'Wrong username or password')
       redirect_to login_path
     end
   end
