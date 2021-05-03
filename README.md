@@ -43,10 +43,9 @@ Download Instructions for image magick:
 
 ## Setup Instructions
 
-1.  `cd image_repository`
-2.  `bundle install`
-3.  `rails db:migrate`
-4.  `rails db:seed`
+1.  `bundle install`
+2.  `rails db:migrate`
+3.  `rails db:seed`
 
 Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/)
 
@@ -61,8 +60,8 @@ Finally run `rails s` and view the UI on [localhost:3000](http://localhost:3000/
 
 ## Running Unit Tests
 
--  `rails db:test:prepare`
--  `cd image_repository && rspec .`
+-  `rails db:test:prepare` if needed
+-  `rspec .`
 
 ### Overview of tests
 
