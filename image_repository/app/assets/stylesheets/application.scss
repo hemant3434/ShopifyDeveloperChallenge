@@ -16,12 +16,15 @@
  @import "semantic-ui";
 
  .success {
+  margin-top: 4px;
   padding: 5px;
   font-size: 15px;
   background-color: lightgreen;
  }
 
  .error {
+  margin-top: 4px;
+  padding: 5px;
   font-size: 15px;
   background-color: orange;
  }

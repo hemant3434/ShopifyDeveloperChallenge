@@ -10,7 +10,9 @@
 
   <body class='body'>
     <% flash.each do |message_type, message| %>
-      <div class="<%= message_type %>"><%= message.is_a?(String)? message : message.join('| \t') %></div>
+      <% message.each do |msg| %>
+        <div class="<%= message_type %>"><%= msg %></div>
+      <% end %>
     <% end %>
     <div class="ui menu">
       <%= link_to "View Public Images", root_path, class: "link active item" %>

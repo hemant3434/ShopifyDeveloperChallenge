@@ -14,11 +14,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Welcome to the Image Repo Uploader "
+      flash_message('success', 'Welcome to the Image Repo Uploader')
       redirect_to user_path(@user)
       log_in(@user)
     else
-      flash[:error] = "Error signing in!!"
+      flash_message('error', 'Error signing up!! Make sure password is not blank')
       redirect_to signup_path
     end
   end
