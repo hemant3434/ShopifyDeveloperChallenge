@@ -24,7 +24,7 @@ Tech Stack:
 
 ## Deployed Site
 
-view the UI on [this heroku app](https://glacial-wave-84275.herokuapp.com/)
+View the UI on [this heroku app](https://glacial-wave-84275.herokuapp.com/)
 
 # Local Setup, Tests & Instructions
 
