@@ -88,7 +88,7 @@ RSpec.describe ImagesController do
 
     context 'when no files are sent' do
       it 'should not get uploaded and should not be added to users images' do
-        post images_path, params: { image: { public: true, picture: [] } }
+        post images_path, params: { image: { public: true, picture: nil } }
 
         expect(user.images.count).to eq(0)
         expect(response.status).to eq(301)
